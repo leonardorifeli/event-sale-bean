@@ -1,3 +1,7 @@
+product_product:
+    resource: "@ProductBundle/Controller/ProductController.php"
+    type:     annotation
+
 sale_product:
     resource: "@SaleProductBundle/Resources/config/routing.yml"
     prefix:   /
