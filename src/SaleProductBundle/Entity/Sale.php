@@ -29,17 +29,32 @@ class Sale
     private $quantity;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="price", type="float")
-     */
+    * @var float
+    *
+    * @ORM\Column(name="price", type="float", precision=10, scale=2, nullable=true, unique=false)
+    */
     private $price;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="product", type="string", length=255)
-     */
+    * @var float
+    *
+    * @ORM\Column(name="value", type="float", precision=10, scale=2, nullable=true, unique=false)
+    */
+    private $value;
+
+    /**
+    * @var float
+    *
+    * @ORM\Column(name="return_price", type="float", precision=10, scale=2, nullable=true, unique=false)
+    */
+    private $returnPrice;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="ProductBundle\Entity\Product")
+    * @ORM\JoinColumns({
+    *   @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true)
+    * })
+    */
     private $product;
 
     /**
@@ -56,9 +71,8 @@ class Sale
      */
     private $updatedAt;
 
-
     /**
-     * Get id
+     * Get the value of Id
      *
      * @return int
      */
@@ -68,21 +82,21 @@ class Sale
     }
 
     /**
-     * Set quantity
+     * Set the value of Id
      *
-     * @param integer $quantity
+     * @param int id
      *
-     * @return Sale
+     * @return self
      */
-    public function setQuantity($quantity)
+    public function setId($id)
     {
-        $this->quantity = $quantity;
+        $this->id = $id;
 
         return $this;
     }
 
     /**
-     * Get quantity
+     * Get the value of Quantity
      *
      * @return int
      */
@@ -92,21 +106,21 @@ class Sale
     }
 
     /**
-     * Set price
+     * Set the value of Quantity
      *
-     * @param float $price
+     * @param int quantity
      *
-     * @return Sale
+     * @return self
      */
-    public function setPrice($price)
+    public function setQuantity($quantity)
     {
-        $this->price = $price;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get the value of Price
      *
      * @return float
      */
@@ -116,11 +130,83 @@ class Sale
     }
 
     /**
-     * Set product
+     * Set the value of Price
      *
-     * @param string $product
+     * @param float price
      *
-     * @return Sale
+     * @return self
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Value
+     *
+     * @return float
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set the value of Value
+     *
+     * @param float value
+     *
+     * @return self
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Return
+     *
+     * @return float
+     */
+    public function getReturnPrice()
+    {
+        return $this->returnPrice;
+    }
+
+    /**
+     * Set the value of Return
+     *
+     * @param float return
+     *
+     * @return self
+     */
+    public function setReturnPrice($returnPrice)
+    {
+        $this->returnPrice = $returnPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Product
+     *
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set the value of Product
+     *
+     * @param mixed product
+     *
+     * @return self
      */
     public function setProduct($product)
     {
@@ -130,31 +216,7 @@ class Sale
     }
 
     /**
-     * Get product
-     *
-     * @return string
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Sale
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
+     * Get the value of Created At
      *
      * @return \DateTime
      */
@@ -164,21 +226,21 @@ class Sale
     }
 
     /**
-     * Set updatedAt
+     * Set the value of Created At
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTime createdAt
      *
-     * @return Sale
+     * @return self
      */
-    public function setUpdatedAt($updatedAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
-        $this->updatedAt = $updatedAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get updatedAt
+     * Get the value of Updated At
      *
      * @return \DateTime
      */
@@ -186,5 +248,19 @@ class Sale
     {
         return $this->updatedAt;
     }
-}
 
+    /**
+     * Set the value of Updated At
+     *
+     * @param \DateTime updatedAt
+     *
+     * @return self
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+}

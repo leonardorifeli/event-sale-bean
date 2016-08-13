@@ -27,10 +27,10 @@ class Product
     private $name;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="price", type="float")
-     */
+    * @var float
+    *
+    * @ORM\Column(name="price", type="float", precision=10, scale=2, nullable=true, unique=false)
+    */
     private $price;
 
     /**
@@ -214,5 +214,10 @@ class Product
     public function getHasPromotion()
     {
         return $this->hasPromotion;
+    }
+
+    public function __toString()
+    {
+        return "{$this->name} - R$ {$this->price}";
     }
 }
