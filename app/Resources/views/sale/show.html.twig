@@ -1,44 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sale</h1>
+    <h1>Venda cadastrada</h1>
 
-    <table>
+    <table class="table table-bordered">
         <tbody>
+        <tr>
+            <th>Produto</th>
+            <td>{{ sale.product.name }}</td>
+        </tr>
             <tr>
-                <th>Quantity</th>
-                <td>{{ sale.quantity }}</td>
+                <th>Quantidade</th>
+                <td>R$ {{ sale.quantity }}</td>
             </tr>
             <tr>
-                <th>Price</th>
-                <td>{{ sale.price }}</td>
+                <th>Valor total</th>
+                <td>{{ sale.price|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
-                <th>Value</th>
-                <td>{{ sale.value }}</td>
+                <th>Valor pago</th>
+                <td>R$ {{ sale.value|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th>Troco</th>
-                <td>{{ sale.returnPrice|number_format(2, '.', ',') }}</td>
+                <td>R$ {{ sale.returnPrice|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th>Updatedat</th>
-                <td>{% if sale.updatedAt %}{{ sale.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if sale.updatedAt %}{{ sale.updatedAt|date('d/m/Y H:i') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('sale_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('sale_edit', { 'id': sale.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <a href="{{ path('sale_index') }}" class="btn btn-success">listar todas</a>
+
+    <a href="{{ path('sale_edit', { 'id': sale.id }) }}" class="btn btn-primary">editar</a>
+
+    <Br/><Br/>
+
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Deletar" class="btn btn-danger">
+    {{ form_end(delete_form) }}
+
 {% endblock %}

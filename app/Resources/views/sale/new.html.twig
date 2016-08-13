@@ -1,16 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sale creation</h1>
+    <h1>Cadastrar nova venda</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+
+        <div class="form-group">
+          {{ form_label(form.product) }}
+          {{ form_widget(form.product) }}
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.quantity) }}
+          {{ form_widget(form.quantity) }}
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.value) }}
+          {{ form_widget(form.value) }}
+        </div>
+
+        <input type="submit" value="Cadastrar" class="btn btn-success" />
+
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('sale_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <br/><br/>
+    <a href="{{ path('sale_index') }}" class="btn btn-primary"><< Voltar</a>
 {% endblock %}

@@ -61,6 +61,23 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+    assets:
+        jquery:
+            inputs:
+                - '%kernel.root_dir%/../vendor/components/jquery/jquery.min.js'
+        bootstrap_css:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/css/bootstrap.min.css'
+        bootstrap_js:
+            inputs:
+                - '%kernel.root_dir%/../vendor/twbs/bootstrap/dist/js/bootstrap.min.js'
+
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

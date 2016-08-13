@@ -1,18 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sale list</h1>
+    <h1>Lista das vendas</h1>
 
-    <table>
+    <a href="{{ path('sale_new') }}" class="btn btn-success">Adicionar nova venda</a>
+
+    <br/><br/>
+
+    <table class="table table-bordered">
         <thead>
             <tr>
             <th>Data</th>
             <th>Produto</th>
-                <th>Qtd</th>
-                <th>Valor dado</th>
+                <th>Valor pago</th>
                 <th>Troco</th>
-                <th>Valor total</th>
-                <th>Actions</th>
+                <th>Total</th>
+                <th>#</th>
             </tr>
         </thead>
         <tbody>
@@ -20,36 +23,27 @@
         {% set returnPrice = 0 %}
         {% for sale in sales %}
             <tr>
-            <td>{% if sale.createdAt %}{{ sale.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            <td>{{ sale.product.name }}</td>
-                <td>{{ sale.quantity }}</td>
+            <td>{% if sale.createdAt %}{{ sale.createdAt|date('d/m/Y H:i') }}{% endif %}</td>
+            <td>{{ sale.product.name }} <b>({{ sale.quantity }} qtd)</b></td>
                 {% set total = total + sale.value %}
                 {% set returnPrice = returnPrice + sale.returnPrice %}
-                <td>{{ sale.value|number_format(2, '.', ',') }}</td>
-                <td>{{ sale.returnPrice|number_format(2, '.', ',') }}</td>
-                <td>{{ sale.price|number_format(2, '.', ',') }}</td>
+                <td>R$ {{ sale.value|number_format(2, '.', ',') }}</td>
+                <td>R$ {{ sale.returnPrice|number_format(2, '.', ',') }}</td>
+                <td>R$ {{ sale.price|number_format(2, '.', ',') }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('sale_show', { 'id': sale.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('sale_edit', { 'id': sale.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-success" href="{{ path('sale_show', { 'id': sale.id }) }}">[+] detalhes</a>
                 </td>
             </tr>
         {% endfor %}
         <tr>
-        <td colspan="6">Total:</td>
-        <td colspan="2">{{ total|number_format(2, '.', ',') }}-{{ returnPrice|number_format(2, '.', ',') }} = {{ (total-returnPrice)|number_format(2, '.', ',') }}</td>
+        <td colspan="2"><b>TOTAL:</b></td>
+        <td><b>R$ {{ total|number_format(2, '.', ',') }}</b></td>
+        <td><b>R$ {{ returnPrice|number_format(2, '.', ',') }}</b></td>
+        <td><b>R$ {{ (total-returnPrice)|number_format(2, '.', ',') }}</b></td>
+        <td></td>
         </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('sale_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+    <a href="{{ path('sale_new') }}" class="btn btn-success">Adicionar nova venda</a>
 {% endblock %}

@@ -15,9 +15,24 @@ class SaleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('product')
-            ->add('quantity')
-            ->add('value');
+            ->add('product', null, [
+              'label' => 'Produto',
+              'attr' => [
+                'class' => 'form-control'
+              ]
+            ])
+            ->add('quantity', null, [
+              'label' => 'Quantidade',
+              'attr' => [
+                'class' => 'form-control'
+              ]
+            ])
+            ->add('value', null, [
+              'label' => 'Valor pago',
+              'attr' => [
+                'class' => 'form-control'
+              ]
+            ]);
     }
 
     /**
