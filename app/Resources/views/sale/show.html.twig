@@ -11,11 +11,11 @@
         </tr>
             <tr>
                 <th>Quantidade</th>
-                <td>R$ {{ sale.quantity }}</td>
+                <td>{{ sale.quantity }}</td>
             </tr>
             <tr>
                 <th>Valor total</th>
-                <td>{{ sale.price|number_format(2, '.', ',') }}</td>
+                <td>R$ {{ sale.price|number_format(2, '.', ',') }}</td>
             </tr>
             <tr>
                 <th>Valor pago</th>

@@ -32,6 +32,18 @@ class SaleType extends AbstractType
               'attr' => [
                 'class' => 'form-control'
               ]
+            ])
+            ->add('hasCart', null, [
+              'label' => 'Cartão',
+              'attr' => [
+                'class' => 'form-control'
+              ]
+            ])
+            ->add('cartType', null, [
+              'label' => 'Foi débito',
+              'attr' => [
+                'class' => 'form-control'
+              ]
             ]);
     }
 

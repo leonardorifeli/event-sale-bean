@@ -72,6 +72,20 @@ class Sale
     private $updatedAt;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="has_cart", type="boolean", nullable=true)
+     */
+    private $hasCart;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="cart_type", type="boolean", nullable=true)
+     */
+    private $cartType;
+
+    /**
      * Get the value of Id
      *
      * @return int
@@ -168,7 +182,7 @@ class Sale
     }
 
     /**
-     * Get the value of Return
+     * Get the value of Return Price
      *
      * @return float
      */
@@ -178,9 +192,9 @@ class Sale
     }
 
     /**
-     * Set the value of Return
+     * Set the value of Return Price
      *
-     * @param float return
+     * @param float returnPrice
      *
      * @return self
      */
@@ -259,6 +273,54 @@ class Sale
     public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Has Cart
+     *
+     * @return bool
+     */
+    public function getHasCart()
+    {
+        return $this->hasCart;
+    }
+
+    /**
+     * Set the value of Has Cart
+     *
+     * @param bool hasCart
+     *
+     * @return self
+     */
+    public function setHasCart($hasCart)
+    {
+        $this->hasCart = $hasCart;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Cart Type
+     *
+     * @return bool
+     */
+    public function getCartType()
+    {
+        return $this->cartType;
+    }
+
+    /**
+     * Set the value of Cart Type
+     *
+     * @param bool cartType
+     *
+     * @return self
+     */
+    public function setCartType($cartType)
+    {
+        $this->cartType = $cartType;
 
         return $this;
     }

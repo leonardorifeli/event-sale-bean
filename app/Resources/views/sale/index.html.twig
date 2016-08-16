@@ -12,6 +12,7 @@
             <tr>
             <th>Data</th>
             <th>Produto</th>
+            <th>Cartão?</th>
                 <th>Valor pago</th>
                 <th>Troco</th>
                 <th>Total</th>
@@ -27,6 +28,7 @@
             <td>{{ sale.product.name }} <b>({{ sale.quantity }} qtd)</b></td>
                 {% set total = total + sale.value %}
                 {% set returnPrice = returnPrice + sale.returnPrice %}
+                <td>{% if sale.hasCart %}sim{% else %}não{% endif %}</td>
                 <td>R$ {{ sale.value|number_format(2, '.', ',') }}</td>
                 <td>R$ {{ sale.returnPrice|number_format(2, '.', ',') }}</td>
                 <td>R$ {{ sale.price|number_format(2, '.', ',') }}</td>
@@ -36,7 +38,7 @@
             </tr>
         {% endfor %}
         <tr>
-        <td colspan="2"><b>TOTAL:</b></td>
+        <td colspan="3"><b>TOTAL:</b></td>
         <td><b>R$ {{ total|number_format(2, '.', ',') }}</b></td>
         <td><b>R$ {{ returnPrice|number_format(2, '.', ',') }}</b></td>
         <td><b>R$ {{ (total-returnPrice)|number_format(2, '.', ',') }}</b></td>

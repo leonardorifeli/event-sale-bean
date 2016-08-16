@@ -20,6 +20,16 @@
           {{ form_widget(form.value) }}
         </div>
 
+        <div class="form-group">
+          {{ form_label(form.hasCart) }}
+          {{ form_widget(form.hasCart) }}
+        </div>
+
+        <div class="form-group">
+          {{ form_label(form.cartType) }}
+          {{ form_widget(form.cartType) }}
+        </div>
+
         <input type="submit" value="Cadastrar" class="btn btn-success" />
 
     {{ form_end(form) }}
